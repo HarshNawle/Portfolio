@@ -1,15 +1,13 @@
-import React from 'react'
 import Navbar from './components/Navbar'
 import { ThemeProvider } from './components/Theme'
+import HeroSection from './components/HeroSection'
 
-type Props = {}
-
-const App = (props: Props) => {
+const App = () => {
   return (
     <div className=''>
       <ThemeProvider defaultTheme="dark">
-
         <Navbar />
+        <HeroSection/>
       </ThemeProvider>
     </div>
   )
