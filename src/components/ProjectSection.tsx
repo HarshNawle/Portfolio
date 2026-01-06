@@ -4,7 +4,8 @@ import Project02 from "./ProjectComponents/Project02"
 
 const ProjectSection = () => {
     return (
-        <div className="container mx-auto max-w-3xl px-12 max-auto min-h-screen">
+        // min-h-screen remember to add in  below div
+        <div className="container mx-auto max-w-4xl px-12 max-auto ">
             <div>
                 <p className="text-gray-400 text-sm">Featured</p>
                 <h2 className="text-2xl font-bold">Projects</h2>

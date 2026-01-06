@@ -4,8 +4,26 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import Antigravity from '../assets/Antigravity.png'
 
 
+import { useMemo } from 'react'
+
+
 const ImageLayout = () => {
-    const AntigravityTime = "7h 30m"
+    const { timeString, isActive, statusText, activity } = useMemo(() => {
+        const hours = Math.floor(Math.random() * 6); // 0 to 5 hours
+        const minutes = Math.floor(Math.random() * 60);
+
+        const isActive = hours >= 3;
+        const activities = ["Coding & Designing"];
+        const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+
+        return {
+            timeString: `${hours}h ${minutes}m`,
+            isActive,
+            statusText: isActive ? "Active in" : "Offline in",
+            activity: isActive ? randomActivity : "Yesterday worked"
+        };
+    }, [])
+
     return (
         <div className='relative inline-flex items-center gap-3'>
             <div>
@@ -16,24 +34,27 @@ const ImageLayout = () => {
                 <div className='relative group z-30'>
                     <TooltipProvider delayDuration={500}>
                         <Tooltip>
-                            <TooltipTrigger className='absolute bottom-0 right-0 
-                        size-6 bg-background border-2 rounded-full flex items-center justify-center
-                        shadow-lg group-hover:scale-110 hover:transition-transform'>
-                                <div className='size-2 bg-muted-foreground rounded-full'> </div>
+                            <TooltipTrigger className={`absolute bottom-0 right-0 
+                        size-6 border-2 rounded-full flex items-center justify-center
+                        shadow-lg group-hover:scale-110 hover:transition-transform ${isActive ? 'bg-green-500 border-white' : 'bg-background'}`}>
+                                <div className={`size-2 rounded-full ${isActive ? 'bg-white' : 'bg-muted-foreground'}`}> </div>
                             </TooltipTrigger>
                             <TooltipContent side='right' align='start' sideOffset={5}
                                 className='bg-white dark:bg-black border border-gray-600 shadow-xl p-3 rounded-lg min-w-[200px]' >
                                 <div className='flex items-center gap-2 mb-1'>
-                                    <div className='size-2 bg-gray-500 rounded-full'></div>
+                                    <div className={`size-2 rounded-full ${isActive ? 'bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]' : 'bg-gray-500'}`}></div>
                                     <span className='text-sm text-gray-400' >
-                                        Offline in
+                                        {statusText}
                                     </span>
                                     <img src={Antigravity} className="size-4 opacity-80" alt="VSCode" />
                                     <span className='text-xs font-medium text-gray-400'>Google Antigravity</span>
                                 </div>
                                 <div className='flex items-baseline gap-1 text-sm text-gray-400'>
-                                    <span className='text-black dark:text-white'>Yesterday worked</span>
-                                    <span className='text-black dark:text-white font-bold'>{AntigravityTime}</span>
+                                    <span className='text-black dark:text-white'>{activity}</span>
+                                    {
+                                        isActive ? <span> </span> : <span className='text-black dark:text-white font-bold'>{timeString}</span>
+                                    }
+
                                 </div>
                             </TooltipContent>
                         </Tooltip>

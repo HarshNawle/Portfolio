@@ -7,7 +7,7 @@ import ControllerSection from '@/components/ControllerSection'
 const SpotifyPlugin = () => {
     return (
         <div className='mt-6'>
-            <div className='felx flex-col gap-3 text-sm p-3 rounded-lg bg-muted/50
+            <div className='flex flex-col gap-4 text-sm p-3 rounded-lg bg-muted/50
                 border border-border/50
                 shadow-inner'>
                 <div className='flex items-center gap-3'>

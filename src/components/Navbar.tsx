@@ -4,7 +4,7 @@ import { ModeToggle } from './ToggleMode'
 const Navbar = () => {
 
     return (
-        <div className='top-0 rounded-md container mx-auto max-w-3xl px-8 py-4 z-50 backdrop-blur-sm sticky'>
+        <div className='top-0 rounded-md container mx-auto max-w-4xl px-8 py-4 z-50 backdrop-blur-sm sticky'>
             <div className='flex items-center justify-between px-4'>
                 <div className='flex items-baseline gap-6'>
                     <div>
