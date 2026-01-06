@@ -1,13 +1,17 @@
 import Navbar from './components/Navbar'
 import { ThemeProvider } from './components/Theme'
 import HeroSection from './components/HeroSection'
+import ProjectSection from './components/ProjectSection'
+import Footer from './components/Footer'
 
 const App = () => {
   return (
-    <div className=''>
+    <div>
       <ThemeProvider defaultTheme="dark">
         <Navbar />
-        <HeroSection/>
+        <HeroSection />
+        <ProjectSection />
+        <Footer />
       </ThemeProvider>
     </div>
   )

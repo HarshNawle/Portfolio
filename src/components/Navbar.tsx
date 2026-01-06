@@ -4,7 +4,7 @@ import { ModeToggle } from './ToggleMode'
 const Navbar = () => {
 
     return (
-        <div className='top-0 rounded-md container mx-auto max-w-3xl px-4 py-4 z-50 backdrop-blur-sm sticky'>
+        <div className='top-0 rounded-md container mx-auto max-w-3xl px-8 py-4 z-50 backdrop-blur-sm sticky'>
             <div className='flex items-center justify-between px-4'>
                 <div className='flex items-baseline gap-6'>
                     <div>
@@ -14,7 +14,7 @@ const Navbar = () => {
                         </a>
                     </div>
                     <div>
-                        <div className=' flex gap-4 items-baseline justify-center font-[400px]'>
+                        <div className=' flex gap-3 items-baseline justify-center font-[400px]'>
                             <a href="#about" className='hover:underline hover:underline-offset-4 text-black dark:text-gray-300 decoration-2' >About</a>
                             <a href="#project" className='hover:underline hover:underline-offset-4 text-black dark:text-gray-300 decoration-2' >Project</a>
                             <a href="#work" className='hover:underline hover:underline-offset-4 text-black dark:text-gray-300 decoration-2' >Work</a>
