@@ -1,8 +1,8 @@
-import SpotifyImage from '../assets/spotify.svg'
-import AlbumImage from '../assets/AlbumImage.jpg'
-import { Button } from '@/components/ui/button'
+import SpotifyImage from '../../images/logos/spotify.svg'
+import AlbumImage from '../../images/AlbumImage.jpg'
+import { Button } from '../ui/button'
 import { Play } from 'lucide-react'
-import ControllerSection from '@/components/ControllerSection'
+import ControllerSection from '../features/ControllerSection'
 
 const SpotifyPlugin = () => {
     return (

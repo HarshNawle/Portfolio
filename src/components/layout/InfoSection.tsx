@@ -1,9 +1,9 @@
-import ReactImage from '../assets/react.svg'
-import NodeJs from '../assets/nodejs.svg'
-import Express from '../assets/express.svg'
-import MongoDB from '../assets/mongodb.svg'
-import NextJs from '../assets/nextjs.svg'
-import TypeScript from '../assets/typescript.svg'
+import ReactImage from '../../images/tech/react.svg'
+import NodeJs from '../../images/tech/nodejs.svg'
+import Express from '../../images/tech/express.svg'
+import MongoDB from '../../images/tech/mongodb.svg'
+import NextJs from '../../images/tech/nextjs.svg'
+import TypeScript from '../../images/tech/typescript.svg'
 
 const InfoSection = () => {
     return (

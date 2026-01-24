@@ -1,5 +1,5 @@
-import ProfileImage from '../assets/(2) Instagram.jpeg'
-import { ModeToggle } from './ToggleMode'
+import ProfileImage from '../../images/(2) Instagram.jpeg'
+import { AnimatedThemeToggler } from '../ui/animated-theme-toggler'
 
 const Navbar = () => {
 
@@ -23,7 +23,7 @@ const Navbar = () => {
                 </div>
 
                 <div className='flex items-center justify-center '>
-                    <ModeToggle />
+                    <AnimatedThemeToggler />
                 </div>
 
             </div>

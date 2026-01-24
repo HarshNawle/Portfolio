@@ -1,11 +1,11 @@
 import { ArrowRightIcon, Github, Globe } from 'lucide-react'
-import Project1 from '../../assets/project-1.webp'
-import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
-// import nextjs from '../../assets/nextjs.svg'
-// import typescript from '../../assets/typescript.svg'
-import react from '../../assets/react.svg'
-import mongodb from '../../assets/mongodb.svg'
-import nodeJS from '../../assets/nodejs.svg'
+import Project1 from '../../../images/projects/project-1.webp'
+import { Tooltip, TooltipContent, TooltipTrigger } from '../../ui/tooltip'
+// import nextjs from '../../../images/tech/nextjs.svg'
+// import typescript from '../../../images/tech/typescript.svg'
+import react from '../../../images/tech/react.svg'
+import mongodb from '../../../images/tech/mongodb.svg'
+import nodeJS from '../../../images/tech/nodejs.svg'
 
 
 const Project01 = () => {

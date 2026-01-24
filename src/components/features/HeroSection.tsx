@@ -1,8 +1,8 @@
-import GetInTouch from "@/layout/GetInTouch"
-import ImageLayout from "@/layout/ImageLayout"
-import InfoSection from "@/layout/InfoSection"
-import SocialMedia from "@/layout/SocialMedia"
-import SpotifyPlugin from "@/layout/SpotifyPlugin"
+import GetInTouch from "../layout/GetInTouch"
+import ImageLayout from "../layout/ImageLayout"
+import InfoSection from "../layout/InfoSection"
+import SocialMedia from "../layout/SocialMedia"
+import SpotifyPlugin from "../layout/SpotifyPlugin"
 
 
 const HeroSection = () => {

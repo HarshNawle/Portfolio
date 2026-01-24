@@ -1,7 +1,7 @@
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar'
-import ProfileImage from '../assets/(2) Instagram.jpeg'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import Antigravity from '../assets/Antigravity.png'
+import ProfileImage from '../../images/(2) Instagram.jpeg'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
+import Antigravity from '../../images/Antigravity.png'
 
 
 import { useMemo } from 'react'

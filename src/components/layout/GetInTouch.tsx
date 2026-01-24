@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button'
+import { Button } from "../ui/button"
 import { ClipboardList, Send } from 'lucide-react'
 
 const GetInTouch = () => {
