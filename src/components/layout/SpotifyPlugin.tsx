@@ -47,11 +47,10 @@ const SpotifyPlugin = () => {
                     </div>
 
                     {/* Play Button */}
-                    <button  >
-                        <Button variant={'outline'} className='size-8'>
-                            <Play />
-                        </Button>
-                    </button>
+                    <Button variant={'outline'} className='size-8'>
+                        <Play />
+                    </Button>
+
 
                 </div>
 
