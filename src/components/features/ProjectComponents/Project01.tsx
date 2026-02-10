@@ -28,12 +28,10 @@ const Project01 = () => {
                             <div className='flex items-center gap-2'>
                                 <div>
                                     <Tooltip>
-                                        <TooltipTrigger>
-                                            <button>
-                                                <a href="" className='text-gray-400 flex size-6 items-center justify-center hover:text-primary transition-colors duration-200 ease-[ease]'>
-                                                    <Globe />
-                                                </a>
-                                            </button>
+                                        <TooltipTrigger asChild>
+                                            <a href="" className='text-gray-400 flex size-6 items-center justify-center hover:text-primary transition-colors duration-200 ease-[ease]'>
+                                                <Globe />
+                                            </a>
                                         </TooltipTrigger>
                                         <TooltipContent>
                                             <p>View Website</p>
@@ -43,12 +41,10 @@ const Project01 = () => {
 
                                 <div>
                                     <Tooltip>
-                                        <TooltipTrigger>
-                                            <button>
-                                                <a href="" className='text-gray-400 flex size-6 items-center justify-center hover:text-primary transition-colors duration-200 ease-[ease]'>
-                                                    <Github />
-                                                </a>
-                                            </button>
+                                        <TooltipTrigger asChild>
+                                            <a href="" className='text-gray-400 flex size-6 items-center justify-center hover:text-primary transition-colors duration-200 ease-[ease]'>
+                                                <Github />
+                                            </a>
                                         </TooltipTrigger>
                                         <TooltipContent>
                                             <p>View Github</p>
