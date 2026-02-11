@@ -6,6 +6,8 @@ import Footer from './components/common/Footer'
 import Quote from './components/layout/Quote'
 // import ViewCount from './components/layout/ViewCount'
 import CopyRight from './components/layout/CopyRight'
+import GithubActivity from './components/layout/GitHubActivityBar'
+import AboutMe from './components/layout/AboutMe'
 
 const App = () => {
   return (
@@ -14,6 +16,8 @@ const App = () => {
         <Navbar />
         <HeroSection />
         <ProjectSection />
+        <GithubActivity/>
+        <AboutMe/>
         <Quote/>
         {/* <ViewCount/> */}
         <CopyRight/>
