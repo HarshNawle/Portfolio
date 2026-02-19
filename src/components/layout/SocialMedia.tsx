@@ -12,12 +12,12 @@ const SocialMedia = () => {
            />
            <TooltipDemo
             icon={<Github />}
-            href='/'
+            href='https://github.com/HarshNawle'
             tooltip='Github'
            />
            <TooltipDemo
             icon={<Linkedin />}
-            href='/'
+            href='https://in.linkedin.com/in/harsh-nawle-ab5358323'
             tooltip='LinkedIn'
            />
            <TooltipDemo
