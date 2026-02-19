@@ -8,19 +8,31 @@ import Quote from './components/layout/Quote'
 import CopyRight from './components/layout/CopyRight'
 // import GithubActivity from './components/layout/GitHubActivityBar'
 import AboutMe from './components/layout/AboutMe'
+import { Route, Routes } from 'react-router-dom'
+import ProjectPage from './components/layout/ProjectPage'
 
 const App = () => {
   return (
     <>
       <ThemeProvider defaultTheme="dark">
         <Navbar />
-        <HeroSection />
-        <ProjectSection />
-        {/* <GithubActivity/> */}
-        <AboutMe/>
-        <Quote/>
-        {/* <ViewCount/> */}
-        <CopyRight/>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <HeroSection />
+                <ProjectSection />
+                {/* <GithubActivity/> */}
+                <AboutMe />
+                <Quote />
+                {/* <ViewCount/> */}
+              </>
+            }
+          />
+          <Route path="/project" element={<ProjectPage />} />
+        </Routes>
+        <CopyRight />
         <Footer />
       </ThemeProvider>
     </>
