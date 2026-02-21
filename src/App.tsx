@@ -23,7 +23,7 @@ const App = () => {
               <>
                 <HeroSection />
                 <ProjectSection />
-                {/* <GithubActivity/> */}
+                {/* <GithubActivity /> */}
                 <AboutMe />
                 <Quote />
                 {/* <ViewCount/> */}

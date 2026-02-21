@@ -3,6 +3,16 @@ import { Moon, Sun } from "lucide-react"
 import { flushSync } from "react-dom"
 
 import { cn } from "../../lib/utils"
+import { useTheme } from "../common/Theme"
+
+// Type declaration for View Transition API
+declare global {
+  interface Document {
+    startViewTransition?: (callback: () => void) => {
+      ready: Promise<void>
+    }
+  }
+}
 
 interface AnimatedThemeTogglerProps extends React.ComponentPropsWithoutRef<"button"> {
   duration?: number
@@ -13,36 +23,63 @@ export const AnimatedThemeToggler = ({
   duration = 400,
   ...props
 }: AnimatedThemeTogglerProps) => {
-  const [isDark, setIsDark] = useState(false)
+  const { theme, setTheme } = useTheme()
+  const [isDark, setIsDark] = useState(() => {
+    // Initialize from DOM
+    return document.documentElement.classList.contains("dark")
+  })
   const buttonRef = useRef<HTMLButtonElement>(null)
 
+  // Sync isDark with DOM changes
   useEffect(() => {
     const updateTheme = () => {
-      setIsDark(document.documentElement.classList.contains("dark"))
+      const isCurrentlyDark = document.documentElement.classList.contains("dark")
+      setIsDark(isCurrentlyDark)
     }
 
+    // Initial check
     updateTheme()
 
-    const observer = new MutationObserver(updateTheme)
+    // Watch for DOM changes
+    const observer = new MutationObserver(() => {
+      updateTheme()
+    })
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["class"],
     })
 
+    // Watch for system theme changes if using system theme
+    if (theme === "system") {
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
+      const handleChange = () => updateTheme()
+      mediaQuery.addEventListener("change", handleChange)
+      return () => {
+        observer.disconnect()
+        mediaQuery.removeEventListener("change", handleChange)
+      }
+    }
+
     return () => observer.disconnect()
-  }, [])
+  }, [theme])
 
   const toggleTheme = useCallback(async () => {
     if (!buttonRef.current) return
 
-    await document.startViewTransition(() => {
-      flushSync(() => {
-        const newTheme = !isDark
-        setIsDark(newTheme)
-        document.documentElement.classList.toggle("dark")
-        localStorage.setItem("theme", newTheme ? "dark" : "light")
-      })
-    }).ready
+    const newTheme = !isDark ? "dark" : "light"
+
+    // Check if browser supports view transitions
+    if (document.startViewTransition) {
+      await document.startViewTransition(() => {
+        flushSync(() => {
+          setTheme(newTheme)
+        })
+      }).ready
+    } else {
+      // Fallback for browsers without view transition support
+      setTheme(newTheme)
+      return
+    }
 
     const { top, left, width, height } =
       buttonRef.current.getBoundingClientRect()
@@ -66,7 +103,7 @@ export const AnimatedThemeToggler = ({
         pseudoElement: "::view-transition-new(root)",
       }
     )
-  }, [isDark, duration])
+  }, [isDark, setTheme, duration])
 
   return (
     <button

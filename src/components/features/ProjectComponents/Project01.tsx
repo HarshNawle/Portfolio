@@ -1,5 +1,5 @@
 import { ArrowRightIcon, Github, Globe } from 'lucide-react'
-import Project1 from '../../../images/projects/project-1.webp'
+import Project1 from '../../../images/projects/huddle-chat-app.png'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../../ui/tooltip'
 // import nextjs from '../../../images/tech/nextjs.svg'
 // import typescript from '../../../images/tech/typescript.svg'
