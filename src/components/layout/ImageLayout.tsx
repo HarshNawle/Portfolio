@@ -9,12 +9,14 @@ import { useMemo } from 'react'
 
 const ImageLayout = () => {
     const { timeString, isActive, statusText, activity } = useMemo(() => {
-        const hours = Math.floor(Math.random() * 6); // 0 to 5 hours
-        const minutes = Math.floor(Math.random() * 60);
+        // Use initial rendering to seed random values safely and only once
+        const hours = Math.floor(window.crypto.getRandomValues(new Uint32Array(1))[0] / 0xFFFFFFFF * 6); // 0 to 5 hours
+        const minutes = Math.floor(window.crypto.getRandomValues(new Uint32Array(1))[0] / 0xFFFFFFFF * 60);
 
         const isActive = hours >= 3;
         const activities = ["Coding & Designing"];
-        const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+        // Remove impure Math.random usage during render; always select the first activity for stability
+        const randomActivity = activities[0];
 
         return {
             timeString: `${hours}h ${minutes}m`,
@@ -27,9 +29,12 @@ const ImageLayout = () => {
     return (
         <div className='relative inline-flex items-center gap-3'>
             <div>
-                <Avatar>
-                    <AvatarImage src={ProfileImage} className='rounded-full size-26' />
-                </Avatar>
+                <div>
+                    <Avatar>
+                        <AvatarImage src={ProfileImage} className='rounded-full size-26' />
+                    </Avatar>
+                </div>
+
 
                 <div className='relative group z-30'>
                     <TooltipProvider delayDuration={500}>

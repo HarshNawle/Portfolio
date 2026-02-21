@@ -6,11 +6,18 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '../../ui/tooltip'
 import react from '../../../images/tech/react.svg'
 import mongodb from '../../../images/tech/mongodb.svg'
 import nodeJS from '../../../images/tech/nodejs.svg'
+import { motion } from 'motion/react'
 
 
 const Project01 = () => {
     return (
-        <div>
+        <motion.div
+            variants={{
+                hidden: { y: 50, opacity: 0 },
+                visible: { y: 0, opacity: 1 }
+            }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+        >
             <div className="bg-card text-card-foreground flex flex-col gap-6
             rounded-xl border group h-full w-full overflow-hidden transition-all
             p-0 border-gray-100 dark:border-gray-800 shadow-none">
@@ -88,7 +95,7 @@ const Project01 = () => {
             </div>
 
 
-        </div>
+        </motion.div>
     )
 }
 
