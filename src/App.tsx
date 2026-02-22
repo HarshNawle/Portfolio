@@ -1,5 +1,4 @@
 import Navbar from './components/common/Navbar'
-import { ThemeProvider } from './components/common/Theme'
 import HeroSection from './components/features/HeroSection'
 import ProjectSection from './components/features/ProjectSection'
 import Footer from './components/common/Footer'
@@ -14,7 +13,6 @@ import ProjectPage from './components/layout/ProjectPage'
 const App = () => {
   return (
     <>
-      <ThemeProvider defaultTheme="dark">
         <Navbar />
         <Routes>
           <Route
@@ -34,7 +32,6 @@ const App = () => {
         </Routes>
         <CopyRight />
         <Footer />
-      </ThemeProvider>
     </>
   )
 }

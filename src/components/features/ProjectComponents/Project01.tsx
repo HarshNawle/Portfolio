@@ -1,102 +1,153 @@
-import { ArrowRightIcon, Github, Globe } from 'lucide-react'
-import Project1 from '../../../images/projects/huddle-chat-app.png'
-import { Tooltip, TooltipContent, TooltipTrigger } from '../../ui/tooltip'
-// import nextjs from '../../../images/tech/nextjs.svg'
-// import typescript from '../../../images/tech/typescript.svg'
-import react from '../../../images/tech/react.svg'
-import mongodb from '../../../images/tech/mongodb.svg'
-import nodeJS from '../../../images/tech/nodejs.svg'
-import { motion } from 'motion/react'
+import { ArrowRightIcon, Github, Globe } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../../ui/tooltip";
+import { motion } from "motion/react";
 
+export type ProjectStatus = "operational" | "building" | "down";
 
-const Project01 = () => {
-    return (
-        <motion.div
-            variants={{
-                hidden: { y: 50, opacity: 0 },
-                visible: { y: 0, opacity: 1 }
-            }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-        >
-            <div className="bg-card text-card-foreground flex flex-col gap-6
-            rounded-xl border group h-full w-full overflow-hidden transition-all
-            p-0 border-gray-100 dark:border-gray-800 shadow-none">
-                <div className="grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6 p-0">
-                    <div className="group relative aspect-video overflow-hidden">
-                        <img src={Project1} className="w-full h-full object-cover" />
-                    </div>
-                </div>
-                <div className='px-6'>
-                    <div className='space-y-4'>
-                        <div className='flex items-center justify-between gap-4'>
-                            <h3 className='text-2xl font-semibold leading-tight group-hover:text-primary hover:cursor-pointer'>
-                                Huddle
-                            </h3>
-                            <div className='flex items-center gap-2'>
-                                <div>
-                                    <Tooltip>
-                                        <TooltipTrigger asChild>
-                                            <a href="" className='text-gray-400 flex size-6 items-center justify-center hover:text-primary transition-colors duration-200 ease-[ease]'>
-                                                <Globe />
-                                            </a>
-                                        </TooltipTrigger>
-                                        <TooltipContent>
-                                            <p>View Website</p>
-                                        </TooltipContent>
-                                    </Tooltip>
-                                </div>
-
-                                <div>
-                                    <Tooltip>
-                                        <TooltipTrigger asChild>
-                                            <a href="" className='text-gray-400 flex size-6 items-center justify-center hover:text-primary transition-colors duration-200 ease-[ease]'>
-                                                <Github />
-                                            </a>
-                                        </TooltipTrigger>
-                                        <TooltipContent>
-                                            <p>View Github</p>
-                                        </TooltipContent>
-                                    </Tooltip>
-                                </div>
-                            </div>
-                        </div>
-                        <p className='text-gray-400 line-clamp-3'>
-                            A comprehensive study platform with notes, flashcards, quizzes, AI chatbot, and interactive learning tools
-                        </p>
-                        <div>
-                            <h4 className='text-sm font-medium mb-2 text-gray-400'>
-                                Technologies
-                            </h4>
-                            <div className='flex flex-wrap gap-2'>
-                                <div className='size-6 hover:scale-120 hover:cursor-pointer transition-transform duration-200 ease-[ease]'>
-                                    <img src={react} alt="" />
-                                </div>
-                                <div className='size-6 hover:scale-120 hover:cursor-pointer transition-transform duration-200 ease-[ease]'>
-                                    <img src={mongodb} alt="" />
-                                </div>
-                                <div className='size-6 hover:scale-120 hover:cursor-pointer transition-transform duration-200 ease-[ease]'>
-                                    <img src={nodeJS} alt="" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className='items-center [.border-t]:pt-6 p-6 pt-0 flex justify-between'>
-                    <div className='flex items-center gap-1 rounded-md px-2 py-1 text-xs border-green-300 bg-green-500/10'>
-                        <div className='size-2 rounded-full bg-green-500 animate-pulse'></div>
-                        All Systems Operational
-                    </div>
-                    <a href=" " className='text-gray-400 flex items-center gap-2 text-sm hover:underline underline-offset-4 hover:text-primary transition-colors duration-200 ease-[ease]'>
-                        View Details
-                        <ArrowRightIcon/>
-                    </a>
-                </div>
-            </div>
-
-
-        </motion.div>
-    )
+export interface Technology {
+  name: string;
+  icon: string;
 }
 
-export default Project01
+export interface Project {
+  title: string;
+  description: string;
+  image: string;
+  technologies: Technology[];
+  liveUrl?: string;
+  githubUrl?: string;
+  status?: ProjectStatus;
+}
+
+const statusConfig: Record<
+  ProjectStatus,
+  { text: string; dot: string; badge: string }
+> = {
+  operational: {
+    text: "All Systems Operational",
+    dot: "bg-green-500",
+    badge: "border-green-300 bg-green-500/10",
+  },
+  building: {
+    text: "Building in Progress",
+    dot: "bg-yellow-500",
+    badge: "border-yellow-300 bg-yellow-500/10",
+  },
+  down: {
+    text: "System Down",
+    dot: "bg-red-500",
+    badge: "border-red-300 bg-red-500/10",
+  },
+};
+
+type ProjectCardProps = Project;
+
+const ProjectCard: React.FC<ProjectCardProps> = ({
+  title,
+  description,
+  image,
+  technologies,
+  liveUrl = "#",
+  githubUrl = "#",
+  status = "operational",
+}) => {
+  const currentStatus = statusConfig[status];
+
+  return (
+    <motion.div
+      variants={{
+        hidden: { y: 40, opacity: 0 },
+        visible: { y: 0, opacity: 1 },
+      }}
+      transition={{ duration: 0.45 }}
+    >
+      <div className="bg-card flex flex-col rounded-xl border group overflow-hidden h-full">
+        {/* Image */}
+        <div className="relative aspect-video overflow-hidden">
+          <img src={image} alt={title} className="w-full h-full object-cover" />
+        </div>
+
+        {/* Body */}
+        <div className="p-6 space-y-4 flex-1">
+          <div className="flex justify-between items-center">
+            <h3 className="text-2xl font-semibold group-hover:text-primary">
+              {title}
+            </h3>
+
+            <div className="flex gap-2">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a
+                    href={liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-gray-400 hover:text-primary"
+                  >
+                    <Globe size={18} />
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>View Website</TooltipContent>
+              </Tooltip>
+
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a
+                    href={githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-gray-400 hover:text-primary"
+                  >
+                    <Github size={18} />
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>View GitHub</TooltipContent>
+              </Tooltip>
+            </div>
+          </div>
+
+          <p className="text-gray-400 line-clamp-3">{description}</p>
+
+          {/* Technologies */}
+          <div>
+            <h4 className="text-sm mb-2 text-gray-400">Technologies</h4>
+
+            <div className="flex flex-wrap gap-2">
+              {technologies.map((tech, i) => (
+                <Tooltip key={i}>
+                  <TooltipTrigger asChild>
+                    <div className="size-6 hover:scale-125 transition-transform cursor-pointer">
+                      <img src={tech.icon} alt={tech.name}  />
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>{tech.name}</TooltipContent>
+                </Tooltip>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="p-6 pt-0 flex justify-between items-center">
+          <div
+            className={`flex items-center gap-2 px-2 py-1 text-xs rounded-md ${currentStatus.badge}`}
+          >
+            <div
+              className={`size-2 rounded-full animate-pulse ${currentStatus.dot}`}
+            />
+            {currentStatus.text}
+          </div>
+
+          <a
+            href={liveUrl}
+            className="flex items-center gap-2 text-sm text-gray-400 hover:text-primary hover:underline"
+          >
+            View Details
+            <ArrowRightIcon size={16} />
+          </a>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+export default ProjectCard;

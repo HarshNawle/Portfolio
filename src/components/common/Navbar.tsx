@@ -1,5 +1,4 @@
 import ProfileImage from '../../images/(2) Instagram.jpeg'
-import { AnimatedThemeToggler } from '../ui/animated-theme-toggler'
 import { Link } from 'react-router-dom'
 
 const Navbar = () => {
@@ -37,10 +36,6 @@ const Navbar = () => {
               </a>
             </div>
           </div>
-        </div>
-
-        <div className='flex items-center justify-center '>
-          <AnimatedThemeToggler />
         </div>
       </div>
     </div>

@@ -1,11 +1,17 @@
 import Project01 from "./ProjectComponents/Project01"
+import react from '../../images/tech/react.svg'
+import mongodb from '../../images/tech/mongodb.svg'
+import nodeJS from '../../images/tech/nodejs.svg'
+import socketIO from '../../images/tech/socket-io-svgrepo-com.svg'
+import express from '../../images/tech/express.svg'
+import Project1 from '../../images/projects/huddle-chat-app.png'
 import { motion } from "motion/react"
 
 
 const ProjectSection = () => {
     return (
         // min-h-screen remember to add in  below div
-        <motion.div 
+        <motion.div
             className="container mx-auto max-w-4xl px-12 max-auto py-10"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -25,7 +31,7 @@ const ProjectSection = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
             >
-                <motion.div 
+                <motion.div
                     className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2 mt-8"
                     initial="hidden"
                     animate="visible"
@@ -38,9 +44,34 @@ const ProjectSection = () => {
                     }}
                 >
                     {/* Card section */}
-                    <Project01/>
-                    <Project01/>
-                    <Project01/>
+                    <Project01
+                        title="Huddle"
+                        description="A comprehensive study platform with notes, flashcards, quizzes, AI chatbot, and interactive learning tools"
+                        image={Project1}
+                        liveUrl="https://your-live-link.com"
+                        githubUrl="https://github.com/your-repo"
+                        status="operational"
+                        technologies={[
+                            { name: "React", icon: react },
+                            { name: "MongoDB", icon: mongodb },
+                            { name: "Node.js", icon: nodeJS },
+                            { name: "Socket.IO", icon: socketIO },
+                        ]}
+                    />
+                    <Project01
+                        title="Planora"
+                        description="Planora is a smart project management platform that helps teams collaborate, organize tasks, and complete projects efficiently in one seamless workspace."
+                        image={Project1}
+                        liveUrl="https://your-live-link.com"
+                        githubUrl="https://github.com/your-repo"
+                        status="building"
+                        technologies={[
+                            { name: "React", icon: react },
+                            { name: "Express", icon: express },
+                            { name: "MongoDB", icon: mongodb },
+                            { name: "Node.js", icon: nodeJS }
+                        ]}
+                    />
                 </motion.div>
 
             </motion.div>
