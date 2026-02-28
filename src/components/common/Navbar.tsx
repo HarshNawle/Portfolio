@@ -29,7 +29,7 @@ const Navbar = () => {
                 Project
               </Link>
               <a
-                href="work"
+                href="/"
                 className='hover:underline hover:underline-offset-4 text-black dark:text-gray-300 decoration-2'
               >
                 Work

@@ -52,6 +52,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   status = "operational",
 }) => {
   const currentStatus = statusConfig[status];
+  const isDisabled = status === "building";
 
   return (
     <motion.div
@@ -77,30 +78,52 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             <div className="flex gap-2">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <a
-                    href={liveUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-gray-400 hover:text-primary"
-                  >
-                    <Globe size={18} />
-                  </a>
+                  {isDisabled ? (
+                    <span
+                      className="text-gray-400 opacity-30 cursor-not-allowed pointer-events-auto"
+                      aria-disabled="true"
+                    >
+                      <Globe size={18} />
+                    </span>
+                  ) : (
+                    <a
+                      href={liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-gray-400 hover:text-primary transition-colors"
+                    >
+                      <Globe size={18} />
+                    </a>
+                  )}
                 </TooltipTrigger>
-                <TooltipContent>View Website</TooltipContent>
+                <TooltipContent>
+                  {isDisabled ? "Coming Soon" : "View Website"}
+                </TooltipContent>
               </Tooltip>
 
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <a
-                    href={githubUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-gray-400 hover:text-primary"
-                  >
-                    <Github size={18} />
-                  </a>
+                  {isDisabled ? (
+                    <span
+                      className="text-gray-400 opacity-30 cursor-not-allowed pointer-events-auto"
+                      aria-disabled="true"
+                    >
+                      <Github size={18} />
+                    </span>
+                  ) : (
+                    <a
+                      href={githubUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-gray-400 hover:text-primary transition-colors"
+                    >
+                      <Github size={18} />
+                    </a>
+                  )}
                 </TooltipTrigger>
-                <TooltipContent>View GitHub</TooltipContent>
+                <TooltipContent>
+                  {isDisabled ? "Coming Soon" : "View GitHub"}
+                </TooltipContent>
               </Tooltip>
             </div>
           </div>
@@ -116,7 +139,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                 <Tooltip key={i}>
                   <TooltipTrigger asChild>
                     <div className="size-6 hover:scale-125 transition-transform cursor-pointer">
-                      <img src={tech.icon} alt={tech.name}  />
+                      <img src={tech.icon} alt={tech.name} />
                     </div>
                   </TooltipTrigger>
                   <TooltipContent>{tech.name}</TooltipContent>
@@ -137,13 +160,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             {currentStatus.text}
           </div>
 
-          <a
+          {/* <a
             href={liveUrl}
             className="flex items-center gap-2 text-sm text-gray-400 hover:text-primary hover:underline"
           >
             View Details
             <ArrowRightIcon size={16} />
-          </a>
+          </a> */}
         </div>
       </div>
     </motion.div>

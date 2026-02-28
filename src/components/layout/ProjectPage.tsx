@@ -6,26 +6,30 @@ import mongodb from '../../images/tech/mongodb.svg'
 import nodeJS from '../../images/tech/nodejs.svg'
 import socketIO from '../../images/tech/socket-io-svgrepo-com.svg'
 import express from '../../images/tech/express.svg'
+import html from '../../images/tech/html-svgrepo-com.svg'
+import css from '../../images/tech/css-3-svgrepo-com.svg'
+import js from '../../images/tech/javascript-svgrepo-com.svg'
 import Project1 from '../../images/projects/huddle-chat-app.png'
+import FriedChicken from '../../images/projects/fried-chicken-website.png'
 
 
 
 const ProjectPage = () => {
     return (
         // min-h-screen remember to add in  below div
-        <motion.div 
+        <motion.div
             className="container mx-auto max-w-4xl px-12 max-auto py-10"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
         >
-            <motion.div 
+            <motion.div
                 className="flex items-center justify-center flex-col"
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
             >
-                <motion.p 
+                <motion.p
                     className="text-5xl"
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -33,7 +37,7 @@ const ProjectPage = () => {
                 >
                     Projects
                 </motion.p>
-                <motion.h2 
+                <motion.h2
                     className="text-gray-400 text-xl my-3"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
@@ -46,7 +50,7 @@ const ProjectPage = () => {
                     animate={{ scaleX: 1 }}
                     transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
                 >
-                    <Separator/>
+                    <Separator />
                 </motion.div>
             </motion.div>
 
@@ -55,7 +59,7 @@ const ProjectPage = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
             >
-                <motion.div 
+                <motion.div
                     className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2 mt-8"
                     initial="hidden"
                     animate="visible"
@@ -72,7 +76,7 @@ const ProjectPage = () => {
                         title="Huddle"
                         description="A comprehensive study platform with notes, flashcards, quizzes, AI chatbot, and interactive learning tools"
                         image={Project1}
-                        liveUrl="https://your-live-link.com"
+                        liveUrl="https://huddle-app-sigma.vercel.app/"
                         githubUrl="https://github.com/your-repo"
                         status="operational"
                         technologies={[
@@ -96,7 +100,20 @@ const ProjectPage = () => {
                             { name: "Node.js", icon: nodeJS }
                         ]}
                     />
-                    
+                    <Project01
+                        title="Fried Chicken Website"
+                        description="Responsive restaurant website with animated product showcase, navigation menu, and contact integration. Built with HTML5, CSS3, and JavaScript, deployed on Render."
+                        image={FriedChicken}
+                        liveUrl="https://fried-chicken-website.onrender.com"
+                        githubUrl="https://github.com/HarshNawle/Fried-Chicken-Website"
+                        status="operational"
+                        technologies={[
+                            { name: "Html", icon: html },
+                            { name: "CSS", icon: css },
+                            { name: "JS", icon: js }
+                        ]}
+                    />
+
                 </motion.div>
 
             </motion.div>
