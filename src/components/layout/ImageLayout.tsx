@@ -2,53 +2,14 @@ import { Avatar, AvatarImage } from '@radix-ui/react-avatar'
 import ProfileImage from '../../images/(2) Instagram.jpeg'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
 import Antigravity from '../../images/Antigravity.png'
-
-import { useEffect, useState } from 'react'
-import { TODAY_TIME, YESTERDAY_TIME } from '@/utils/constant'
-import apiClient from '@/lib/api-client'
-
-
-
+import { useWakaTime } from '@/hooks/useWakaTime'
 
 const ImageLayout = () => {
-    const [isActive, setIsActive] = useState<boolean | null>(null)
-    const [yesterdayTime, setYesterdayTime] = useState<string | null>(null)
+    const { status, yesterday, loading } = useWakaTime()
 
-    const STATUS_API = TODAY_TIME
-    // `${API_URL}/status`
-
-    const YESTERDAY_API = YESTERDAY_TIME
-    const fetchStatus = async () => {
-        try {
-            const response = await apiClient.get(STATUS_API)
-
-            if (response.data.isCoding) {
-                // ✅ user is active
-                setIsActive(true)
-                setYesterdayTime(null)
-            } else {
-                // ✅ user is offline → fetch yesterday
-                setIsActive(false)
-
-                try {
-                    const response2 = await apiClient.get(YESTERDAY_API)
-                    setYesterdayTime(response2.data.time ?? null)
-                } catch {
-                    setYesterdayTime(null)
-                }
-            }
-        } catch (error) {
-            console.log(error)
-            setIsActive(null)
-        }
-    }
-
-    useEffect(() => {
-        // fetchStatus()
-
-        const interval = setInterval(fetchStatus, 30000)
-        return () => clearInterval(interval)
-    }, [])
+    // Derive active state from the hook
+    const isActive = status?.isCoding ?? false
+    const isLoading = loading || status === null
 
     return (
         <div className='relative inline-flex items-center gap-3'>
@@ -73,54 +34,60 @@ const ImageLayout = () => {
                             </TooltipTrigger>
 
                             <TooltipContent
-                                side='right'
-                                align='start'
+                                side="right"
+                                align="start"
                                 sideOffset={5}
-                                className='bg-white dark:bg-black border border-gray-600 shadow-xl p-3 rounded-lg min-w-[160px]'
+                                className="bg-white dark:bg-black border border-gray-600 shadow-xl p-3 rounded-lg min-w-[160px]"
                             >
-                                <div className='flex flex-col gap-1'>
-                                    <div className='flex items-center gap-2'>
+                                <div className="flex flex-col gap-1">
+                                    {/* Row 1: Status dot + label + icon */}
+                                    <div className="flex items-center gap-2">
                                         <div
-                                            className={`size-2 rounded-full ${isActive ? 'bg-green-500' : 'bg-gray-500'
+                                            className={`size-2 rounded-full ${isActive ? "bg-green-500" : "bg-gray-500"
                                                 }`}
                                         />
 
-                                        <span className='text-sm text-gray-400'>
-                                            {isActive ? 'Active' : 'offline in'}
+                                        <span className="text-sm text-gray-400">
+                                            {isLoading
+                                                ? "Checking..."
+                                                : isActive
+                                                    ? "Active"
+                                                    : "Offline"}
                                         </span>
 
                                         <img
                                             src={Antigravity}
-                                            className='size-4 opacity-80'
-                                            alt='Status'
+                                            className="size-4 opacity-80"
+                                            alt="Status"
                                         />
 
-                                        <span className='text-sm text-gray-400'>
+                                        <span className="text-sm text-gray-400">
                                             Google Antigravity
                                         </span>
                                     </div>
 
-                                    {/* ⭐ THIS IS THE IMPORTANT PART */}
-                                    <div className='text-[15px] ml-2 text-gray-400'>
-                                        {isActive === null ? (
-                                            'Checking...'
+                                    {/* Row 2: Activity detail */}
+                                    <div className="text-[15px] ml-2 text-gray-400">
+                                        {isLoading ? (
+                                            "Checking..."
                                         ) : isActive ? (
-                                            'Coding & Designing'
-                                        ) : yesterdayTime ? (
                                             <>
-                                                Yesterday worked <b>{yesterdayTime}</b>
+                                                Coding & Designing
+                                                {status?.project && (
+                                                    <span className="block text-xs mt-0.5 text-gray-500">
+                                                        Working on <b>{status.project}</b>
+                                                        {status.language && ` · ${status.language}`}
+                                                    </span>
+                                                )}
+                                            </>
+                                        ) : yesterday && yesterday !== "0 mins" ? (
+                                            <>
+                                                Yesterday worked <b>{yesterday}</b>
                                             </>
                                         ) : (
-                                            'No activity yesterday'
+                                            "No activity yesterday"
                                         )}
                                     </div>
-                                    {/* <div className='text-[15px] ml-2 text-gray-400'>
-                                        {isActive
-                                            ? 'Coding & Designing'
-                                            : yesterdayTime
-                                                ? <p>`Yesterday worked <b>${yesterdayTime}</b>`</p>
-                                                : <p>Yesterday worked <b>30 min 21 sec</b></p>}
-                                    </div> */}
                                 </div>
                             </TooltipContent>
                         </Tooltip>
