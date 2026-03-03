@@ -16,7 +16,7 @@ export function useWakaTime() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let mounted = true;
+    let mounted = true; 
 
     const fetchData = async () => {
       try {
