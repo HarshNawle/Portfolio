@@ -1,35 +1,17 @@
-import { useState, useRef } from "react"
 import SpotifyImage from '../../images/logos/spotify.svg'
 import AlbumImage from '../../images/AlbumImage.jpg'
-import SongFile from '../../music/Kendrick_Lamar_-_SZA_-_All_The_Stars_-_Kendrick_Lamar_-_SZA_-_All_The_Stars_(mp3.pm).mp3'   // <-- add your music file
-import { Button } from '../ui/button'
-import { Play, Pause } from 'lucide-react'
-import ControllerSection from '../features/ControllerSection'
+import { useState } from 'react';
+import { Heart } from 'lucide-react';
 
 const SpotifyPlugin = () => {
-
-    const [isPlaying, setIsPlaying] = useState(false);
-    const audioRef = useRef<HTMLAudioElement | null>(null);
+    const [liked, setLiked] = useState(false);
 
     // ✅ Manual Song Data
     const songData = {
         song: "All The Stars",
         artist: "Kendrick Lamar, SZA",
         cover: AlbumImage,
-        audio: SongFile,
         spotifyUrl: "https://open.spotify.com/track/3GCdLUSnKSMJhs4Tj6CV3s"
-    }
-
-    const togglePlay = () => {
-        if (!audioRef.current) return
-
-        if (isPlaying) {
-            audioRef.current.pause()
-        } else {
-            audioRef.current.play()
-        }
-
-        setIsPlaying(!isPlaying)
     }
 
     return (
@@ -68,19 +50,32 @@ const SpotifyPlugin = () => {
 
                     </div>
 
-                    {/* Play Button */}
+                    <button
+                        onClick={() => setLiked(!liked)}
+                        className="p-2 rounded-full hover:bg-white/10 transition"
+                        aria-label="Like"
+                    >
+                        <Heart
+                            className={`w-5 h-5 transition-all duration-300 ${liked
+                                    ? "fill-red-500 text-red-500 scale-110"
+                                    : "text-gray-400"
+                                }`}
+                        />
+                    </button>
+
+                    {/* Play Button
                     <Button variant={'outline'} className='size-8' onClick={togglePlay}>
                         {isPlaying ? <Pause /> : <Play />}
-                    </Button>
+                    </Button> */}
 
                 </div>
 
-                {/* Audio */}
+                {/* Audio
                 <audio ref={audioRef} src={songData.audio} />
 
                 <div hidden>
                     <ControllerSection />
-                </div>
+                </div> */}
 
             </div>
         </div>

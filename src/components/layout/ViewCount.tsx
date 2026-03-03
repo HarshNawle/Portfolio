@@ -10,7 +10,7 @@ const ViewCount = () => {
                     sm:flex-row items-center gap-3 sm:gap-6'>
                     <div className='flex items-center gap-2'>
                         <Button variant={'outline'} className='size-7'>
-                            <Eye/>
+                            <Eye />
                         </Button>
 
                         <div className='felx items-baseline gap-1 font-mono text-sm'>

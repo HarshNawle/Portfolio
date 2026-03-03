@@ -1,4 +1,4 @@
-import { ArrowRightIcon, Github, Globe } from "lucide-react";
+import {  Github, Globe } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../../ui/tooltip";
 import { motion } from "motion/react";
 
